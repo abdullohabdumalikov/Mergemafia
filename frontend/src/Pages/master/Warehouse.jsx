@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import "./Warehouse.css";
-import Report from "../report/Report";
 
-// Modern SVG Icons for SARTARBOSS Dashboard
+// Modern SVG Icons
 const Icons = {
   Home: () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
   ),
   Queue: () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
       <line x1="16" y1="2" x2="16" y2="6" />
       <line x1="8" y1="2" x2="8" y2="6" />
@@ -19,14 +18,14 @@ const Icons = {
     </svg>
   ),
   Orders: () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
       <line x1="3" y1="6" x2="21" y2="6" />
       <path d="M16 10a4 4 0 0 1-8 0" />
     </svg>
   ),
   Clients: () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
       <circle cx="9" cy="7" r="4" />
       <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -34,27 +33,27 @@ const Icons = {
     </svg>
   ),
   Ombor: () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
       <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
       <line x1="12" y1="22.08" x2="12" y2="12" />
     </svg>
   ),
   Hisobot: () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <line x1="18" y1="20" x2="18" y2="10" />
       <line x1="12" y1="20" x2="12" y2="4" />
       <line x1="6" y1="20" x2="6" y2="14" />
     </svg>
   ),
   Settings: () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="3" />
       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
     </svg>
   ),
   Plus: () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <line x1="12" y1="5" x2="12" y2="19" />
       <line x1="5" y1="12" x2="19" y2="12" />
     </svg>
@@ -84,26 +83,9 @@ const Icons = {
       <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
     </svg>
   ),
-  CategoryHair: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M7 20l10-10" />
-      <path d="M10 4a6 6 0 0 1 6 6" />
-    </svg>
-  ),
-  CategoryBeard: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </svg>
-  ),
-  CategoryTools: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-    </svg>
-  ),
-  CategoryHygiene: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+  ChevronRight: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="9 18 15 12 9 6" />
     </svg>
   )
 };
@@ -165,14 +147,13 @@ const MENU_ITEMS = [
 ];
 
 const CATEGORY_ITEMS = [
-  { name: "Soch parvarishi", iconComponent: Icons.CategoryHair },
-  { name: "Soqol va yuz", iconComponent: Icons.CategoryBeard },
-  { name: "Uskunalar", iconComponent: Icons.CategoryTools },
-  { name: "Gigiyena", iconComponent: Icons.CategoryHygiene },
+  { name: "Soch parvarishi" },
+  { name: "Soqol va yuz" },
+  { name: "Uskunalar" },
+  { name: "Gigiyena" },
 ];
 
 export default function Warehouse() {
-  const [activeTab, setActiveTab] = useState("ombor");
   const [products, setProducts] = useState(INITIAL_PRODUCTS);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [showAddProductModal, setShowAddProductModal] = useState(false);
@@ -181,6 +162,7 @@ export default function Warehouse() {
 
   const [newProduct, setNewProduct] = useState({
     name: "",
+    iconKey: "Shampoo",
     quantity: 10,
     minimum: 5,
     category: "Soch parvarishi",
@@ -213,7 +195,7 @@ export default function Warehouse() {
 
     setProducts([...products, item]);
     setShowAddProductModal(false);
-    setNewProduct({ name: "", quantity: 10, minimum: 5, category: "Soch parvarishi" });
+    setNewProduct({ name: "", iconKey: "Shampoo", quantity: 10, minimum: 5, category: "Soch parvarishi" });
     triggerToast(`"${item.name}" mahsuloti omborga qo'shildi!`);
   };
 
@@ -232,15 +214,8 @@ export default function Warehouse() {
 
       {/* HEADER */}
       <header className="artisan-header">
-        <div className="artisan-header-logo-group">
-          <img src="/logo.png" alt="SARTARBOSS" className="logo-image-graphic" />
-          <div className="logo-brand-details">
-            <div className="logo-brand-name">
-              <span className="brand-sartar">SARTAR</span>
-              <span className="brand-boss">BOSS</span>
-            </div>
-            <div className="logo-brand-tagline">NAVBAT • MIJOZ • DAROMAD</div>
-          </div>
+        <div className="header-logo">
+          Artisan Sartaroshxona
         </div>
 
         <div className="header-actions">
@@ -254,7 +229,7 @@ export default function Warehouse() {
 
           <div className="user-avatar-wrapper" title="Profil">
             <div className="avatar-img-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F2937" strokeWidth="2">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2B2D38" strokeWidth="2">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
@@ -263,159 +238,147 @@ export default function Warehouse() {
         </div>
       </header>
 
-      {/* SIDEBAR - ICON ONLY NAVIGATION */}
-    
+      {/* SIDEBAR */}
+     
 
       {/* MAIN CONTENT AREA */}
       <main className="artisan-main">
-        {activeTab === "hisobot" ? (
-          <Report />
-        ) : (
-          <>
-            {/* PAGE TOP */}
-            <div className="page-header">
-              <div className="page-title-box">
-                <h1 className="page-title">Ombor</h1>
-                <p className="page-subtitle">Nima tugayapti?</p>
+        {/* PAGE TOP */}
+        <div className="page-header">
+          <div className="page-title-box">
+            <h1 className="page-title">Ombor</h1>
+            <p className="page-subtitle">Nima tugayapti?</p>
+          </div>
+
+          <button
+            className="btn-add-product"
+            onClick={() => setShowAddProductModal(true)}
+          >
+            <Icons.Plus />
+            <span>+ Mahsulot qo'shish</span>
+          </button>
+        </div>
+
+        {/* CONTENT GRID */}
+        <div className="ombor-grid">
+          {/* LEFT COLUMN: Asosiy zahiralar Table */}
+          <div className="ombor-card inventory-main-card">
+            <div className="card-top-bar">
+              <div className="card-heading">
+                <span className="box-symbol">
+                  <Icons.Ombor />
+                </span>
+                <h2>Asosiy zahiralar</h2>
               </div>
 
               <button
-                className="btn-add-product"
-                onClick={() => setShowAddProductModal(true)}
+                className="link-view-all"
+                onClick={() => setSelectedCategory("all")}
               >
-                <Icons.Plus />
-                <span>+ Mahsulot qo'shish</span>
+                Barchasini ko'rish
               </button>
             </div>
 
-            {/* CONTENT GRID */}
-            <div className="ombor-grid">
-              {/* LEFT COLUMN: Asosiy zahiralar Table */}
-              <div className="ombor-card inventory-main-card">
-                <div className="card-top-bar">
-                  <div className="card-heading">
-                    <span className="box-symbol">
-                      <Icons.Ombor />
-                    </span>
-                    <h2>Asosiy zahiralar</h2>
-                  </div>
+            {/* TABLE HEADER */}
+            <div className="inventory-table-header">
+              <div className="col-product">Mahsulot</div>
+              <div className="col-qty">Qoldiq</div>
+              <div className="col-min">Minimal miqdor</div>
+              <div className="col-status">Holat</div>
+            </div>
 
-                  <button
-                    className="link-view-all"
-                    onClick={() => setSelectedCategory("all")}
+            {/* TABLE ROWS */}
+            <div className="inventory-table-body">
+              {filteredProducts.map((p) => {
+                const isLow = p.type === "low";
+                const ProductIcon = Icons[p.iconKey] || Icons.Shampoo;
+                return (
+                  <div
+                    key={p.id}
+                    className={`inventory-table-row ${isLow ? "row-low-alert" : ""}`}
                   >
-                    Barchasini ko'rish
-                  </button>
-                </div>
-
-                {/* TABLE HEADER */}
-                <div className="inventory-table-header">
-                  <div className="col-product">Mahsulot</div>
-                  <div className="col-qty">Qoldiq</div>
-                  <div className="col-min">Minimal miqdor</div>
-                  <div className="col-status">Holat</div>
-                </div>
-
-                {/* TABLE ROWS */}
-                <div className="inventory-table-body">
-                  {filteredProducts.map((p) => {
-                    const isLow = p.type === "low";
-                    const ProductIcon = Icons[p.iconKey] || Icons.Shampoo;
-                    return (
-                      <div
-                        key={p.id}
-                        className={`inventory-table-row ${isLow ? "row-low-alert" : ""}`}
-                      >
-                        <div className="col-product font-medium">
-                          <div className={`product-icon-container ${p.bgClass || "shampoo-bg"}`}>
-                            <ProductIcon />
-                          </div>
-                          <span className="product-name-text">{p.name}</span>
-                        </div>
-
-                        <div className={`col-qty ${isLow ? "qty-text-red" : ""}`}>
-                          {p.quantity} dona
-                        </div>
-
-                        <div className="col-min">{p.minimum}</div>
-
-                        <div className="col-status">
-                          <span className={`status-pill ${isLow ? "pill-danger" : "pill-success"}`}>
-                            <span className="status-bullet"></span>
-                            {p.status}
-                          </span>
-                        </div>
+                    <div className="col-product font-medium">
+                      <div className={`product-icon-container ${p.bgClass || "shampoo-bg"}`}>
+                        <ProductIcon />
                       </div>
-                    );
-                  })}
-                </div>
+                      <span className="product-name-text">{p.name}</span>
+                    </div>
+
+                    <div className={`col-qty ${isLow ? "qty-text-red" : ""}`}>
+                      {p.quantity} dona
+                    </div>
+
+                    <div className="col-min">{p.minimum}</div>
+
+                    <div className="col-status">
+                      <span className={`status-pill ${isLow ? "pill-danger" : "pill-success"}`}>
+                        <span className="status-bullet"></span>
+                        {p.status}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div className="ombor-right-column">
+            {/* WARNING CARD */}
+            <div className="alert-warning-card">
+              {/* Background Watermark Triangle */}
+              <svg className="watermark-warning-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="12" y1="9" x2="12" y2="13" strokeWidth="2"/>
+                <line x1="12" y1="17" x2="12.01" y2="17" strokeWidth="2.5"/>
+              </svg>
+
+              <div className="warning-card-header">
+                <span className="warning-danger-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="2.5">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                </span>
+                <h3 className="warning-title">Diqqat!</h3>
               </div>
 
-              {/* RIGHT COLUMN */}
-              <div className="ombor-right-column">
-                {/* WARNING CARD */}
-                <div className="alert-warning-card">
-                  {/* Background Watermark Triangle */}
-                  <svg className="watermark-warning-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <line x1="12" y1="9" x2="12" y2="13" strokeWidth="2"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17" strokeWidth="2.5"/>
-                  </svg>
+              <p className="warning-description">
+                Soqol kremi zaxirasi minimal miqdordan tushib ketdi (2/5). Iltimos tez kunda buyurtma bering.
+              </p>
 
-                  <div className="warning-card-header">
-                    <span className="warning-danger-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="2.5">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="12" y1="8" x2="12" y2="12" />
-                        <line x1="12" y1="16" x2="12.01" y2="16" />
-                      </svg>
-                    </span>
-                    <h3 className="warning-title">Diqqat!</h3>
-                  </div>
+              <button
+                className="btn-call-supplier"
+                onClick={() => setShowCallModal(true)}
+              >
+                <span>Ta'minotchiga qo'ng'iroq</span>
+              </button>
+            </div>
 
-                  <p className="warning-description">
-                    Soqol kremi zaxirasi minimal miqdordan tushib ketdi (2/5). Iltimos tez kunda buyurtma bering.
-                  </p>
-
-                  <button
-                    className="btn-call-supplier"
-                    onClick={() => setShowCallModal(true)}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                    </svg>
-                    <span>Ta'minotchiga qo'ng'iroq</span>
-                  </button>
-                </div>
-
-                {/* CATEGORIES CARD */}
-                <div className="ombor-card categories-card">
-                  <h3 className="categories-title">Mahsulot toifalari</h3>
-                  <div className="categories-list">
-                    {CATEGORY_ITEMS.map((catItem) => {
-                      const CatIcon = catItem.iconComponent;
-                      const isSelected = selectedCategory === catItem.name;
-                      return (
-                        <div
-                          key={catItem.name}
-                          className={`category-item-row ${isSelected ? "selected-cat" : ""}`}
-                          onClick={() => setSelectedCategory(isSelected ? "all" : catItem.name)}
-                        >
-                          <div className="cat-label-box">
-                            <span className="cat-icon-badge">
-                              <CatIcon />
-                            </span>
-                            <span className="cat-label">{catItem.name}</span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+            {/* CATEGORIES CARD */}
+            <div className="ombor-card categories-card">
+              <h3 className="categories-title">Mahsulot toifalari</h3>
+              <div className="categories-list">
+                {CATEGORY_ITEMS.map((catItem) => {
+                  const isSelected = selectedCategory === catItem.name;
+                  return (
+                    <div
+                      key={catItem.name}
+                      className={`category-item-row ${isSelected ? "selected-cat" : ""}`}
+                      onClick={() => setSelectedCategory(isSelected ? "all" : catItem.name)}
+                    >
+                      <span className="cat-label">{catItem.name}</span>
+                      <span className="cat-arrow">
+                        <Icons.ChevronRight />
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          </>
-        )}
+          </div>
+        </div>
       </main>
 
       {/* MODAL 1: ADD PRODUCT */}
