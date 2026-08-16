@@ -255,8 +255,8 @@ export default function Report() {
     datasets: [
       {
         data: weeklyDaysData.map(d => d.val),
-        backgroundColor: weeklyDaysData.map(d => (d.isToday ? '#C5A059' : 'rgba(197, 160, 89, 0.2)')),
-        hoverBackgroundColor: weeklyDaysData.map(d => (d.isToday ? '#B8934B' : 'rgba(197, 160, 89, 0.35)')),
+        backgroundColor: weeklyDaysData.map(d => (d.isToday ? '#18181B' : '#EDEDF0')),
+        hoverBackgroundColor: weeklyDaysData.map(d => (d.isToday ? '#000000' : '#E0E0E5')),
         borderRadius: 99,
         borderSkipped: false,
         barThickness: 18,
@@ -271,9 +271,9 @@ export default function Report() {
       legend: { display: false },
       tooltip: {
         enabled: true,
-        backgroundColor: '#C5A059',
-        titleColor: '#12141A',
-        bodyColor: '#12141A',
+        backgroundColor: '#18181B',
+        titleColor: '#FFFFFF',
+        bodyColor: '#FFFFFF',
         padding: { top: 6, bottom: 6, left: 12, right: 12 },
         cornerRadius: 10,
         displayColors: false,
@@ -289,7 +289,7 @@ export default function Report() {
         ticks: {
           color: (context) => {
             const index = context.index;
-            return weeklyDaysData[index]?.isToday ? '#C5A059' : '#9CA3AF';
+            return weeklyDaysData[index]?.isToday ? '#18181B' : '#8E8E93';
           },
           font: (context) => {
             const index = context.index;
@@ -337,7 +337,7 @@ export default function Report() {
     plugins: {
       legend: { display: false },
       tooltip: {
-        backgroundColor: '#1E212B',
+        backgroundColor: '#18181B',
         padding: 10,
         cornerRadius: 8,
         callbacks: {
