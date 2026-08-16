@@ -85,7 +85,7 @@ function MainApp() {
 }
 
 export default function App() {
-  return (
+  return ( 
     <AppProvider>
       <MainApp />
     </AppProvider>
