@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useApp } from '../../context/AppContext';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -56,6 +57,7 @@ const SERVICES_LIST = [
 ];
 
 export default function Report() {
+  const { t } = useApp();
   const [transactions, setTransactions] = useState(INITIAL_TRANSACTIONS);
   const [timeFilter, setTimeFilter] = useState('all'); // 'today', 'week', 'all'
   const [selectedMaster, setSelectedMaster] = useState('all');
@@ -131,19 +133,6 @@ export default function Report() {
       return true;
     });
   }, [transactions, timeFilter, selectedMaster]);
-
-  // Derived Metrics
-  const metrics = useMemo(() => {
-    const totalRevenue = filteredTransactions.reduce((acc, curr) => acc + curr.price, 0);
-    const clientCount = filteredTransactions.length;
-    const averageBill = clientCount > 0 ? Math.round(totalRevenue / clientCount) : 0;
-    const avgRating =
-      clientCount > 0
-        ? (filteredTransactions.reduce((acc, curr) => acc + curr.rating, 0) / clientCount).toFixed(1)
-        : '0.0';
-
-    return { totalRevenue, clientCount, averageBill, avgRating };
-  }, [filteredTransactions]);
 
   // Master Statistics
   const masterStats = useMemo(() => {
@@ -266,8 +255,8 @@ export default function Report() {
     datasets: [
       {
         data: weeklyDaysData.map(d => d.val),
-        backgroundColor: weeklyDaysData.map(d => (d.isToday ? '#C89B3C' : '#F3EFE6')),
-        hoverBackgroundColor: weeklyDaysData.map(d => (d.isToday ? '#B58A2E' : '#E8E2D5')),
+        backgroundColor: weeklyDaysData.map(d => (d.isToday ? '#C5A059' : 'rgba(197, 160, 89, 0.2)')),
+        hoverBackgroundColor: weeklyDaysData.map(d => (d.isToday ? '#B8934B' : 'rgba(197, 160, 89, 0.35)')),
         borderRadius: 99,
         borderSkipped: false,
         barThickness: 18,
@@ -282,9 +271,9 @@ export default function Report() {
       legend: { display: false },
       tooltip: {
         enabled: true,
-        backgroundColor: '#C89B3C',
-        titleColor: '#FFFFFF',
-        bodyColor: '#FFFFFF',
+        backgroundColor: '#C5A059',
+        titleColor: '#12141A',
+        bodyColor: '#12141A',
         padding: { top: 6, bottom: 6, left: 12, right: 12 },
         cornerRadius: 10,
         displayColors: false,
@@ -300,7 +289,7 @@ export default function Report() {
         ticks: {
           color: (context) => {
             const index = context.index;
-            return weeklyDaysData[index]?.isToday ? '#C89B3C' : '#8E8E93';
+            return weeklyDaysData[index]?.isToday ? '#C5A059' : '#9CA3AF';
           },
           font: (context) => {
             const index = context.index;
@@ -329,7 +318,7 @@ export default function Report() {
         label: 'Tushum (UZS)',
         data: chartData.map(d => d.value),
         borderColor: '#C5A059',
-        backgroundColor: 'rgba(197, 160, 89, 0.12)',
+        backgroundColor: 'rgba(197, 160, 89, 0.15)',
         borderWidth: 3,
         tension: 0.38,
         fill: true,
@@ -348,7 +337,7 @@ export default function Report() {
     plugins: {
       legend: { display: false },
       tooltip: {
-        backgroundColor: '#C89B3C',
+        backgroundColor: '#1E212B',
         padding: 10,
         cornerRadius: 8,
         callbacks: {
@@ -359,12 +348,12 @@ export default function Report() {
     scales: {
       x: {
         grid: { display: false },
-        ticks: { color: '#71717A', font: { family: 'Inter', size: 12 } },
+        ticks: { color: '#9CA3AF', font: { family: 'Inter', size: 12 } },
       },
       y: {
-        grid: { color: '#E5E0D8' },
+        grid: { color: 'rgba(255, 255, 255, 0.06)' },
         ticks: {
-          color: '#71717A',
+          color: '#9CA3AF',
           font: { family: 'Inter', size: 11 },
           callback: (value) => `${(value / 1000).toFixed(0)}k`,
         },
@@ -377,12 +366,12 @@ export default function Report() {
       {/* Title Header */}
       <div className="daily-stats-header">
         <div>
-          <h1 className="daily-stats-title">Bugun qancha topdim?</h1>
-          <p className="daily-stats-subtitle">Kunlik moliyaviy hisobot va statistika</p>
+          <h1 className="daily-stats-title">{t('todayTitle')}</h1>
+          <p className="daily-stats-subtitle">{t('todaySubtitle')}</p>
         </div>
         <div className="report-actions">
           <button className="btn-add-tx" onClick={() => setShowAddModal(true)}>
-            + Yangi Xizmat Qo'shish
+            {t('addServiceBtn')}
           </button>
         </div>
       </div>
@@ -394,28 +383,28 @@ export default function Report() {
           {/* Card 1: Bugungi Natija */}
           <div className="daily-card bugungi-natija-card">
             <div className="bg-accent-circle"></div>
-            <div className="card-label">BUGUNGI NATIJA</div>
+            <div className="card-label">{t('todayResult')}</div>
             <div className="today-amount-wrapper">
               <span className="today-amount-val">{todayStats.totalAmount.toLocaleString('fr-FR')}</span>
-              <span className="today-amount-unit">so'm</span>
+              <span className="today-amount-unit">{t("so'm")}</span>
             </div>
             <div className="card-divider"></div>
             <div className="today-metrics-row">
               <div className="metric-item">
                 <span className="metric-label">
-                  <span className="metric-icon">👥</span> Mijozlar
+                  <span className="metric-icon">👥</span> {t('clients')}
                 </span>
                 <span className="metric-value">{todayStats.clientCount}</span>
               </div>
               <div className="metric-item">
                 <span className="metric-label">
-                  <span className="metric-icon green">✓</span> Tugagan
+                  <span className="metric-icon green">✓</span> {t('completed')}
                 </span>
                 <span className="metric-value">{todayStats.completedCount}</span>
               </div>
               <div className="metric-item">
                 <span className="metric-label">
-                  <span className="metric-icon red">✕</span> Bekor qilingan
+                  <span className="metric-icon red">✕</span> {t('cancelled')}
                 </span>
                 <span className="metric-value">{todayStats.cancelledCount}</span>
               </div>
@@ -426,39 +415,39 @@ export default function Report() {
           <div className="daily-card payment-methods-card">
             <div className="payment-card-header">
               <span className="payment-card-icon">💳</span>
-              <h3>To'lov usullari</h3>
+              <h3>{t('paymentMethods')}</h3>
             </div>
             <div className="payment-methods-list">
               <div className="payment-method-item">
                 <div className="payment-method-left">
                   <span className="pm-icon cash">💵</span>
-                  <span className="pm-name">Naqd</span>
+                  <span className="pm-name">{t('cash')}</span>
                 </div>
                 <div className="pm-amount">
                   <span className="pm-val">{todayStats.cashAmount.toLocaleString('fr-FR')}</span>
-                  <span className="pm-unit">so'm</span>
+                  <span className="pm-unit">{t("so'm")}</span>
                 </div>
               </div>
 
               <div className="payment-method-item">
                 <div className="payment-method-left">
                   <span className="pm-icon click">🌐</span>
-                  <span className="pm-name">Click</span>
+                  <span className="pm-name">{t('click')}</span>
                 </div>
                 <div className="pm-amount">
                   <span className="pm-val">{todayStats.clickAmount.toLocaleString('fr-FR')}</span>
-                  <span className="pm-unit">so'm</span>
+                  <span className="pm-unit">{t("so'm")}</span>
                 </div>
               </div>
 
               <div className="payment-method-item">
                 <div className="payment-method-left">
                   <span className="pm-icon payme">💳</span>
-                  <span className="pm-name">Payme</span>
+                  <span className="pm-name">{t('payme')}</span>
                 </div>
                 <div className="pm-amount">
                   <span className="pm-val">{todayStats.paymeAmount.toLocaleString('fr-FR')}</span>
-                  <span className="pm-unit">so'm</span>
+                  <span className="pm-unit">{t("so'm")}</span>
                 </div>
               </div>
             </div>
@@ -471,9 +460,9 @@ export default function Report() {
             <div className="weekly-card-header">
               <div className="weekly-title-row">
                 <span className="weekly-icon">📊</span>
-                <h3>7 kunlik daromad</h3>
+                <h3>{t('weeklyIncome')}</h3>
               </div>
-              <p className="weekly-subtitle">Joriy haftadagi ko'rsatkichlar</p>
+              <p className="weekly-subtitle">{t('weeklySubtitle')}</p>
             </div>
 
             <div className="weekly-chart-wrapper" style={{ height: '220px', position: 'relative' }}>
@@ -489,7 +478,7 @@ export default function Report() {
         <div className="analytics-left">
           {/* Revenue Trend Chart.js Line Chart */}
           <div className="section-card">
-            <h3 className="section-title">📈 So'nggi 5 Kunlik Tushum Trendi (UZS)</h3>
+            <h3 className="section-title">{t('trendTitle')}</h3>
             <div className="chart-container" style={{ height: '220px', position: 'relative' }}>
               <Line data={lineChartData} options={lineChartOptions} />
             </div>
@@ -497,16 +486,16 @@ export default function Report() {
 
           {/* Masters/Staff performance table */}
           <div className="section-card">
-            <h3 className="section-title">💈 Ustalar Faoliyati va Oylik Ulushi</h3>
+            <h3 className="section-title">{t('mastersTitle')}</h3>
             <div className="table-responsive">
               <table className="report-table">
                 <thead>
                   <tr>
-                    <th>Usta</th>
-                    <th>Xizmatlar</th>
-                    <th>Jami Tushum</th>
-                    <th>Usta Ulushi (Maosh)</th>
-                    <th>Reyting</th>
+                    <th>{t('masterTh')}</th>
+                    <th>{t('servicesTh')}</th>
+                    <th>{t('revenueTh')}</th>
+                    <th>{t('salaryTh')}</th>
+                    <th>{t('ratingTh')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -539,7 +528,7 @@ export default function Report() {
         <div className="analytics-right">
           {/* Services Popularity */}
           <div className="section-card">
-            <h3 className="section-title">✂️ Mashhur Xizmatlar Tahlili</h3>
+            <h3 className="section-title">{t('popularServices')}</h3>
             <div className="services-breakdown">
               {serviceStats.length === 0 ? (
                 <p className="no-data">Ma'lumotlar mavjud emas</p>
@@ -561,7 +550,7 @@ export default function Report() {
 
           {/* Recent Bookings / Transactions log */}
           <div className="section-card">
-            <h3 className="section-title">⏱️ So'nggi Tranzaksiyalar Jurnali</h3>
+            <h3 className="section-title">{t('recentTx')}</h3>
             <div className="tx-list">
               {filteredTransactions.slice(0, 6).map((tx) => (
                 <div key={tx.id} className="tx-item">
@@ -579,9 +568,6 @@ export default function Report() {
                   </div>
                 </div>
               ))}
-              {filteredTransactions.length === 0 && (
-                <p className="no-data">Hech qanday tranzaksiyalar topilmadi</p>
-              )}
             </div>
           </div>
         </div>
@@ -592,7 +578,7 @@ export default function Report() {
         <div className="modal-overlay" onClick={() => setShowAddModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h3>💈 Yangi Ko'rsatilgan Xizmatni Qo'shish (Simulyatsiya)</h3>
+              <h3>💈 Yangi Ko'rsatilgan Xizmatni Qo'shish</h3>
               <button className="modal-close-btn" onClick={() => setShowAddModal(false)}>✕</button>
             </div>
             <form onSubmit={handleAddTransaction} className="modal-form">
@@ -642,10 +628,10 @@ export default function Report() {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label>Reyting (Sifat baholash)</label>
+                  <label>Baholash</label>
                   <select
                     value={newTx.rating}
-                    onChange={(e) => setNewTx({ ...newTx, rating: e.target.value })}
+                    onChange={(e) => setNewTx({ ...newTx, rating: Number(e.target.value) })}
                   >
                     <option value={5}>⭐⭐⭐⭐⭐ (A'lo)</option>
                     <option value={4}>⭐⭐⭐⭐ (Yaxshi)</option>
