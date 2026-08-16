@@ -360,7 +360,7 @@ export default function Report() {
       },
     },
   }), []);
-
+ 
   return (
     <div className="report-container">
       {/* Title Header */}
