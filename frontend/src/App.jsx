@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import Report from './Pages/report/Report'
 
 const API = 'http://localhost:3000'
 
 function App() {
+  const [currentTab, setCurrentTab] = useState('report') // Set 'report' as default or switchable
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -121,14 +123,29 @@ function App() {
         <div className="header-content">
           <div className="header-left">
             <div className="logo">
-              <span className="logo-icon">👤</span>
-              <h1>User Manager</h1>
+              <span className="logo-icon">💈</span>
+              <h1>Mergemafia</h1>
             </div>
-            <span className="badge">{users.length} foydalanuvchi</span>
+            <div className="nav-tabs">
+              <button 
+                className={`nav-tab-btn ${currentTab === 'report' ? 'active' : ''}`}
+                onClick={() => setCurrentTab('report')}
+              >
+                📊 Sartaroshxona Hisoboti
+              </button>
+              <button 
+                className={`nav-tab-btn ${currentTab === 'users' ? 'active' : ''}`}
+                onClick={() => setCurrentTab('users')}
+              >
+                👥 Foydalanuvchilar
+              </button>
+            </div>
           </div>
-          <button className="btn btn-primary" onClick={openCreate}>
-            + Yangi foydalanuvchi
-          </button>
+          {currentTab === 'users' && (
+            <button className="btn btn-primary" onClick={openCreate}>
+              + Yangi foydalanuvchi
+            </button>
+          )}
         </div>
       </header>
 
@@ -136,7 +153,9 @@ function App() {
         {error && <div className="alert alert-error">⚠ {error}</div>}
         {success && <div className="alert alert-success">✓ {success}</div>}
 
-        {loading ? (
+        {currentTab === 'report' ? (
+          <Report />
+        ) : loading ? (
           <div className="loading">
             <div className="spinner"></div>
             <p>Yuklanmoqda...</p>
