@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const userRoutes = require("./routes/user.routes");
 
 const app = express();
@@ -14,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(dirname + "/index.html");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.use(userRoutes);
