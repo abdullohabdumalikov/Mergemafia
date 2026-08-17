@@ -1,0 +1,356 @@
+/* Barber Shop Auth Styling with #c5a059 (Gold), #1a1a1a (Dark), #fdfbf7 (Light), #71717a (Gray) */
+
+:root {
+  --color-gold: #c5a059;
+  --color-gold-hover: #b08d47;
+  --color-dark: #1a1a1a;
+  --color-light: #fdfbf7;
+  --color-gray: #71717a;
+  --color-gray-light: #e4e4e7;
+  --font-barber: 'Outfit', 'Playfair Display', 'Segoe UI', serif;
+  
+  /* Light Mode Default */
+  --bg-page: var(--color-light);
+  --bg-card: #ffffff;
+  --text-primary: var(--color-dark);
+  --text-secondary: var(--color-gray);
+  --border-color: rgba(26, 26, 26, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+  --bg-page: var(--color-dark);
+  --bg-card: #242424;
+  --text-primary: var(--color-light);
+  --text-secondary: #a1a1aa;
+  --border-color: rgba(253, 251, 247, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.35);
+}
+
+.barber-container {
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-barber);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 40px 20px;
+}
+
+/* Header & Theme Toggle */
+.barber-header {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 10;
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-dark);
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+}
+
+/* Auth Card */
+.barber-card {
+  width: 100%;
+  max-width: 500px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px var(--shadow-color);
+  padding: 40px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.barber-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+/* Logo / Title */
+.barber-brand {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.barber-brand .icon {
+  font-size: 42px;
+  color: var(--color-gold);
+  margin-bottom: 10px;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.barber-brand h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+}
+
+.barber-brand p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Tabs */
+.barber-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 30px;
+}
+
+.barber-tab {
+  flex: 1;
+  text-align: center;
+  background: none;
+  border: none;
+  padding: 12px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.barber-tab.active {
+  color: var(--color-gold);
+}
+
+.barber-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-gold);
+}
+
+/* Form Styles */
+.barber-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.barber-input {
+  width: 100%;
+  padding: 12px 14px 12px 38px;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--text-primary);
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.barber-input:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Submit Button */
+.barber-submit-btn {
+  background-color: var(--color-gold);
+  color: var(--color-dark);
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.barber-submit-btn:hover {
+  background-color: var(--color-gold-hover);
+  box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+}
+
+/* Alerts */
+.barber-alert {
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.barber-alert.success {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.barber-alert.error {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Dashboard Style (Logged in state) */
+.barber-dashboard {
+  width: 100%;
+  max-width: 700px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 15px 40px var(--shadow-color);
+  padding: 40px;
+  text-align: center;
+}
+
+.dashboard-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.welcome-title {
+  font-size: 32px;
+  color: var(--color-gold);
+  margin-bottom: 8px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  text-align: left;
+  margin-bottom: 35px;
+}
+
+.profile-card {
+  background: rgba(197, 160, 89, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 15px 20px;
+}
+
+.profile-card .label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.profile-card .val {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-dark);
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .barber-card {
+    padding: 24px;
+  }
+}

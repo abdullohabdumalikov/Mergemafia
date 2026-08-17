@@ -1,0 +1,182 @@
+/* Artisan Sartaroshxona Premium Sidebar Styles - WOW Design System */
+.sidebar {
+  width: 270px;
+  min-width: 270px;
+  background: #16181F;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 20px;
+  box-sizing: border-box;
+  border-right: 1px solid rgba(197, 160, 89, 0.18);
+  z-index: 50;
+  user-select: none;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Brand Header */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 6px 28px 6px;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+  margin-bottom: 28px;
+}
+
+.brand-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #242733 0%, #14161C 100%);
+  border: 1.5px solid #C5A059;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(197, 160, 89, 0.25);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-brand:hover .brand-icon-box {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.scissors-icon {
+  font-size: 22px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.brand-title-top {
+  font-size: 14px;
+  font-weight: 700;
+  color: #C5A059;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.brand-title-main {
+  font-size: 19px;
+  font-weight: 800;
+  color: #FDFBF7;
+  margin: 0;
+  letter-spacing: -0.4px;
+}
+
+.brand-subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: #71717A;
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+
+/* Nav Menu */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 13px 18px;
+  border-radius: 14px;
+  border: none;
+  background: transparent;
+  color: #9CA3AF;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  position: relative;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(197, 160, 89, 0.12);
+  color: #FDFBF7;
+  transform: translateX(4px);
+}
+
+.sidebar-item.active {
+  background: linear-gradient(135deg, #C5A059 0%, #A88440 100%);
+  color: #FFFFFF;
+  font-weight: 800;
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.38);
+}
+
+.sidebar-item.active:hover {
+  background: linear-gradient(135deg, #B8934B 0%, #9C7838 100%);
+  color: #FFFFFF;
+  transform: none;
+}
+
+.item-icon {
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  transition: transform 0.2s ease;
+}
+
+.sidebar-item:hover .item-icon {
+  transform: scale(1.15);
+}
+
+/* Bottom Group */
+.nav-bottom-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: rgba(197, 160, 89, 0.2);
+  margin: 18px 0;
+}
+
+/* Mobile Responsive Sidebar */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 16px;
+  }
+
+  .sidebar-brand {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+
+  .nav-group {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .sidebar-item {
+    padding: 10px 14px;
+    white-space: nowrap;
+  }
+}

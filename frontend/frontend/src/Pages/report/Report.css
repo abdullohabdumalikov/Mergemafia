@@ -1,0 +1,551 @@
+/* IDEAL DARK THEME - Report & Daily Dashboard Styles */
+.report-container {
+  padding: 0;
+  background-color: var(--bg-dark-main, #12141A);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-primary, #FDFBF7);
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Daily Financial Dashboard Header */
+.daily-stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.daily-stats-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary, #FDFBF7);
+  margin: 0 0 6px 0;
+  letter-spacing: -0.8px;
+}
+
+.daily-stats-subtitle {
+  color: var(--text-muted, #9CA3AF);
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.btn-add-tx {
+  background: var(--primary-gold, #C5A059);
+  color: #12141A;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.35);
+  transition: all 0.22s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-add-tx:hover {
+  background: #B8934B;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(197, 160, 89, 0.45);
+}
+
+.daily-stats-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+  .daily-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.daily-stats-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.daily-stats-right {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Daily Cards (Ideal Dark) */
+.daily-card {
+  background: #1E212B;
+  border-radius: 24px;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  padding: 28px;
+  position: relative;
+}
+
+/* Card 1: Bugungi Natija */
+.bugungi-natija-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-accent-circle {
+  position: absolute;
+  top: -55px;
+  right: -55px;
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  background: rgba(197, 160, 89, 0.12);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #C5A059;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.today-amount-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.today-amount-val {
+  font-size: 42px;
+  font-weight: 800;
+  color: #FDFBF7;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.today-amount-unit {
+  font-size: 18px;
+  font-weight: 600;
+  color: #C5A059;
+}
+
+.card-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 22px 0 18px 0;
+}
+
+.today-metrics-row {
+  display: flex;
+  gap: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #9CA3AF;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.metric-icon.green {
+  color: #22C55E;
+  font-weight: 800;
+}
+
+.metric-icon.red {
+  color: #EF4444;
+  font-weight: 800;
+}
+
+.metric-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: #FDFBF7;
+}
+
+/* Card 2: To'lov usullari */
+.payment-methods-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.payment-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-card-icon {
+  font-size: 20px;
+  color: #C5A059;
+}
+
+.payment-card-header h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #FDFBF7;
+  margin: 0;
+}
+
+.payment-methods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-method-item {
+  background: #161820;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.payment-method-item:hover {
+  transform: translateY(-1px);
+  background: #232734;
+  border-color: rgba(197, 160, 89, 0.3);
+}
+
+.payment-method-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pm-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #232734;
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.pm-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FDFBF7;
+}
+
+.pm-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.pm-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: #FDFBF7;
+}
+
+.pm-unit {
+  font-size: 13px;
+  font-weight: 500;
+  color: #9CA3AF;
+}
+
+/* Card 3: 7 kunlik daromad chart styles */
+.weekly-income-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #1E212B;
+  border-radius: 28px;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  padding: 28px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.weekly-card-header {
+  margin-bottom: 24px;
+}
+
+.weekly-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.weekly-icon {
+  font-size: 20px;
+  color: #C5A059;
+}
+
+.weekly-title-row h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #FDFBF7;
+  margin: 0;
+}
+
+.weekly-subtitle {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin: 0;
+}
+
+.weekly-chart-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 260px;
+  padding-top: 50px;
+  position: relative;
+}
+
+/* Section Cards */
+.analytics-layout {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .analytics-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.analytics-left, .analytics-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-card {
+  background: #1E212B;
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0 0 20px 0;
+  color: #FDFBF7;
+  border-left: 4px solid #C5A059;
+  padding-left: 12px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.report-table th {
+  padding: 14px 16px;
+  color: #C5A059;
+  font-weight: 700;
+  border-bottom: 2px solid rgba(197, 160, 89, 0.3);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  background: #161820;
+}
+
+.report-table td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #D1D5DB;
+}
+
+.report-table tr:last-child td {
+  border-bottom: none;
+}
+
+.master-profile-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.master-avatar {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, #C5A059, #8C6D27);
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(197, 160, 89, 0.3);
+}
+
+.master-name {
+  font-weight: 700;
+  color: #FDFBF7;
+}
+
+.master-role {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+.salary-cell {
+  font-weight: 700;
+  color: #FDFBF7;
+}
+
+.rating-tag {
+  background: rgba(197, 160, 89, 0.15);
+  color: #C5A059;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 12px;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+}
+
+/* Service Popularity */
+.services-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.service-progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.service-progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.service-name-label {
+  font-weight: 700;
+  color: #FDFBF7;
+}
+
+.service-count-label {
+  color: #9CA3AF;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.progress-bar-bg {
+  height: 8px;
+  background-color: #161820;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #C5A059 0%, #8C6D27 100%);
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Recent Transaction Log */
+.tx-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tx-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border-radius: 12px;
+  background: #161820;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.2s ease;
+}
+
+.tx-item:hover {
+  transform: translateX(4px);
+  background: #232734;
+  border-color: rgba(197, 160, 89, 0.3);
+}
+
+.tx-time {
+  font-weight: 700;
+  font-size: 13px;
+  color: #FDFBF7;
+}
+
+.tx-date {
+  font-size: 11px;
+  color: #9CA3AF;
+}
+
+.tx-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-left: 12px;
+}
+
+.tx-client-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #FDFBF7;
+}
+
+.tx-service-info {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+.tx-price {
+  font-weight: 700;
+  color: #22C55E;
+  font-size: 14px;
+}
+
+.tx-rating-stars {
+  font-size: 10px;
+  color: #C5A059;
+}
